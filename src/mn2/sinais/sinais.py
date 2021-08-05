@@ -9,7 +9,7 @@ rc('animation', html='jshtml')
 # Definições
 class Sinais:
 
-  def __init__(self, entrada, arquivo=True):
+  def __init__(self):
     
 
   def discretizar(valor_inicial, valor_final, tamanho_vetor, funcao):
