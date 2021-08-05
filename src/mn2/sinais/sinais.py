@@ -8,10 +8,7 @@ rc('animation', html='jshtml')
 
 # Definições
 class Sinais:
-
-  def __init__(self):
-    
-
+  @staticmethod
   def discretizar(valor_inicial, valor_final, tamanho_vetor, funcao):
   '''
     Parametros:
@@ -26,7 +23,7 @@ class Sinais:
   vfunc = np.vectorize(funcao)
 
   return vfunc(values)
-
+@staticmethod
 def morphing(vetor1, vetor2, t):
   '''
     Parametros:
@@ -37,7 +34,7 @@ def morphing(vetor1, vetor2, t):
     Retorno: Array com o morphing da vetor 1 até o vetor 2 no tempo t.
     '''
   return (1 - t)*vetor1 + t*vetor2
-
+@staticmethod
 def normalizar(vetor):
   '''
     Parametros:
@@ -47,7 +44,7 @@ def normalizar(vetor):
     Retorno: Vetor normalizado de norma 1.
     '''
   return vetor/np.linalg.norm(vetor)
-
+@staticmethod
 def animMorphing(vetor1, vetor2, xlim=(-5, 5), ylim=(-5,5), frames=100):
   '''
     Parametros:
@@ -79,7 +76,7 @@ def animMorphing(vetor1, vetor2, xlim=(-5, 5), ylim=(-5,5), frames=100):
   anim = FuncAnimation(fig, animate, init_func = init,
                      frames = frames, interval = 20, blit = True)
   return anim
-
+@staticmethod
 def interpolar(pontos, grauMaximo):
   '''
     Parametros:
