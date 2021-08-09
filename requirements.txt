@@ -1,3 +1,4 @@
 scikit-learn
 wordcloud
 pandas
+networkx
