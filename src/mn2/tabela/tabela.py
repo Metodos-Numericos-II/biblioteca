@@ -1,7 +1,3 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-
 class Tabela:
 
   def __init__(self,caminho):
@@ -107,6 +103,14 @@ class Tabela:
     # dist(vetor1,vetor2) = (y1-x1)^2 + (y2-x2)^2 + (y3-x3)^2
     # dist(vetor1,vetor2) = (vetor1[0]-vetor2[0])^2 + (vetor1[1]-vetor2[1])^2 + (vetor1[2]-vetor1[2])^2
     return np.linalg.norm(vetor1 - vetor2)
+  
+  @staticmethod
+  def multiplica_matrizes(matriz1, matriz2):
+    '''
+      Multiplica matriz1 pela matriz2
+      As matrizes devem estar no formato do Numpy já com as colunas numéricas (sem id e com OneHot)
+    '''
+    return np.dot(matriz1, matriz2)
 
   ## Está certo? Parecer muito específico para o que temos na aplicação de sistemas de recomendação ##
   @staticmethod
