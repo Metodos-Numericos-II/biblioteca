@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 class Tabela:
 
   def __init__(self,info):
