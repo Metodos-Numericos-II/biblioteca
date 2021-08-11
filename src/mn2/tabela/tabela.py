@@ -1,7 +1,13 @@
 class Tabela:
 
-  def __init__(self,caminho):
-    self.dataframe = self.carregar_CSV(caminho)
+  def __init__(self,info):
+    '''
+      Cria o dataframe, info pode ser path do CSV ou DataFrame
+    '''
+    if(isinstance(info,pd.DataFrame)):
+      self.dataframe = info
+    elif(isinstance(info,str)):
+      self.dataframe = self.carregar_CSV(info)
   
   @staticmethod
   def carregar_CSV(caminho):
@@ -130,3 +136,25 @@ class Tabela:
     
     rank.sort(key=lambda tup:tup[1])
     return rank
+  
+  @staticmethod
+  def multiplica_tabelas(t_uxg,t_gxf):
+    # arrumar para o formato numpy
+    uxg_np,uxg_cols = t_uxg.transforma_vetor()
+    gxf_np,gxf_cols = t_gxf.transforma_vetor()
+
+    # Separa ids
+    uxg_lins, uxg_np = t_uxg.divide_vetor(uxg_np, 1, 1)
+    uxg_lins_cat,uxg_cols = t_uxg.divide_vetor(uxg_cols, 1)
+    gxf_lins,gxf_np = t_gxf.divide_vetor(gxf_np, 1, 1)
+    gxf_lins_cat,gxf_cols = t_gxf.divide_vetor(gxf_cols, 1)
+
+    uxf_np = Tabela.multiplica_matrizes(uxg_np, gxf_np)
+
+    # juntar
+    
+    uxf_ids = pd.DataFrame(uxg_lins,columns=uxg_lins_cat)
+    uxf_df = pd.DataFrame(uxf_np,columns=gxf_cols)
+
+    uxf_df = pd.concat([uxf_ids,uxf_df],axis=1)
+    return Tabela(uxf_df)
